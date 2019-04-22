@@ -1,6 +1,10 @@
 library(jsonlite)
 library(data.table)
 
+# Generic pack/unpack functions
+packGeneric   <- toJSON
+unpackGeneric <- function(s) {fromJSON(as.character(s))}
+
 # Extract R objects from JSON text
 unpackDataFrame <- function(json){ as.data.frame(fromJSON(json)) }
 unpackDataTable <- function(json){ as.data.table(fromJSON(json)) }
@@ -18,7 +22,5 @@ packDataTable <- packDataFrame
 packCharacter <- toJSON
 packNumeric   <- toJSON
 packLogical   <- toJSON
-
-# Generic pack/unpack functions
-packGeneric   <- toJSON
-unpackGeneric <- function(s) {fromJSON(as.character(s))}
+packList      <- toJSON
+packMatrix    <- toJSON
