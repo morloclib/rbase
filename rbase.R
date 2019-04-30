@@ -12,9 +12,7 @@ unpackCharacter <- fromJSON
 unpackNumeric   <- fromJSON
 unpackLogical   <- fromJSON
 unpackList <- function(json) {fromJSON(json, simplifyVector = FALSE)}
-unpackMatrix <- function(json){
-  fromJSON(json, simplifyVector = FALSE, simplifyMatrix = TRUE)
-}
+unpackMatrix <- fromJSON
 
 # Serialize R objects into JSON text
 packDataFrame <- function(json){ toJSON(json, dataframe="columns") }
