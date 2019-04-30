@@ -7,6 +7,10 @@ source "R" from "rbase.R" (
   , "unpackLogical"
   , "unpackMatrix"
   , "unpackNumeric"
+  , "unpackString"
+  , "unpackInt"
+  , "unpackNum"
+  , "unpackBool"
   # packers
   , "packCharacter"
   , "packDataFrame"
@@ -15,26 +19,37 @@ source "R" from "rbase.R" (
   , "packLogical"
   , "packMatrix"
   , "packNumeric"
+  , "packString"
+  , "packInt"
+  , "packNum"
+  , "packBool"
   # generic
   , "packGeneric"
   , "unpackGeneric"
 )
 
-packCharacter R :: packs => Character    -> JSON;
-packDataFrame R :: packs => DataFrame    -> JSON;
-packDataTable R :: packs => DataTable    -> JSON;
-packList      R :: packs => List         -> JSON;
-packLogical   R :: packs => Logical      -> JSON;
-packMatrix    R :: packs => Matrix a m n -> JSON;
-packNumeric   R :: packs => Numeric      -> JSON;
+packGeneric R :: packs => a -> JSON;
+packCharacter R :: packs => Character -> JSON;
+packDataFrame R :: packs => DataFrame -> JSON;
+packDataTable R :: packs => DataTable -> JSON;
+packList R :: packs => List -> JSON;
+packLogical R :: packs => Logical -> JSON;
+packMatrix R :: packs => Matrix a m n -> JSON;
+packNumeric R :: packs => Numeric -> JSON;
+packString R :: packs => String -> JSON;
+packInt R :: packs => Int -> JSON;
+packNum R :: packs => Num -> JSON;
+packBool R :: packs => Bool -> JSON;
 
-packGeneric   R :: packs   => a    -> JSON;
 unpackGeneric R :: unpacks => JSON -> a;
-
 unpackCharacter R :: unpacks => JSON -> Character;
 unpackDataFrame R :: unpacks => JSON -> DataFrame;
 unpackDataTable R :: unpacks => JSON -> DataTable;
-unpackList      R :: unpacks => JSON -> List;
-unpackLogical   R :: unpacks => JSON -> Logical;
-unpackMatrix    R :: unpacks => JSON -> Matrix a m n;
-unpackNumeric   R :: unpacks => JSON -> Numeric;
+unpackList R :: unpacks => JSON -> List;
+unpackLogical R :: unpacks => JSON -> Logical;
+unpackMatrix R :: unpacks => JSON -> Matrix a m n;
+unpackNumeric R :: unpacks => JSON -> Numeric;
+unpackString R :: packs => JSON -> String;
+unpackInt R :: packs => JSON -> Int;
+unpackNum R :: packs => JSON -> Num;
+unpackBool R :: packs => JSON -> Bool;

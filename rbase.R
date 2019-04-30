@@ -14,6 +14,16 @@ unpackLogical   <- fromJSON
 unpackList <- function(json) {fromJSON(json, simplifyVector = FALSE)}
 unpackMatrix <- fromJSON
 
+unpackString <- fromJSON
+unpackInt <- fromJSON
+unpackNum <- fromJSON
+unpackBool <- fromJSON
+
+packString <- function(x) toJSON(x, auto_unbox=TRUE)
+packInt <- function(x) toJSON(as.integer(x), auto_unbox=TRUE)
+packNum <- function(x) toJSON(as.numeric(x), auto_unbox=TRUE)
+packBool <- function(x) toJSON(as.logical(x), auto_unbox=TRUE)
+
 # Serialize R objects into JSON text
 packDataFrame <- function(json){ toJSON(json, dataframe="columns") }
 packDataTable <- packDataFrame
