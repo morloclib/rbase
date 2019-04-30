@@ -20,13 +20,13 @@ source "R" from "rbase.R" (
   , "unpackGeneric"
 )
 
-packCharacter R :: packs => Character -> JSON;
-packDataFrame R :: packs => DataFrame -> JSON;
-packDataTable R :: packs => DataTable -> JSON;
-packList      R :: packs => List      -> JSON;
-packLogical   R :: packs => Logical   -> JSON;
-packMatrix    R :: packs => Matrix    -> JSON;
-packNumeric   R :: packs => Numeric   -> JSON;
+packCharacter R :: packs => Character    -> JSON;
+packDataFrame R :: packs => DataFrame    -> JSON;
+packDataTable R :: packs => DataTable    -> JSON;
+packList      R :: packs => List         -> JSON;
+packLogical   R :: packs => Logical      -> JSON;
+packMatrix    R :: packs => Matrix a m n -> JSON;
+packNumeric   R :: packs => Numeric      -> JSON;
 
 packGeneric   R :: packs   => a    -> JSON;
 unpackGeneric R :: unpacks => JSON -> a;
@@ -36,5 +36,5 @@ unpackDataFrame R :: unpacks => JSON -> DataFrame;
 unpackDataTable R :: unpacks => JSON -> DataTable;
 unpackList      R :: unpacks => JSON -> List;
 unpackLogical   R :: unpacks => JSON -> Logical;
-unpackMatrix    R :: unpacks => JSON -> Matrix;
+unpackMatrix    R :: unpacks => JSON -> Matrix a m n;
 unpackNumeric   R :: unpacks => JSON -> Numeric;
