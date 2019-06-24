@@ -28,28 +28,38 @@ source "R" from "rbase.R" (
   , "unpackGeneric"
 )
 
-packGeneric R :: packs => a -> JSON;
-packCharacter R :: packs => Character -> JSON;
-packDataFrame R :: packs => DataFrame -> JSON;
-packDataTable R :: packs => DataTable -> JSON;
-packList R :: packs => List -> JSON;
-packLogical R :: packs => Logical -> JSON;
-packMatrix R :: packs => Matrix a m n -> JSON;
-packNumeric R :: packs => Numeric -> JSON;
-packString R :: packs => String -> JSON;
-packInt R :: packs => Int -> JSON;
-packNum R :: packs => Num -> JSON;
-packBool R :: packs => Bool -> JSON;
+packGeneric R :: packs => a -> "character";
+unpackGeneric R :: unpacks => "character" -> a;
 
-unpackGeneric R :: unpacks => JSON -> a;
-unpackCharacter R :: unpacks => JSON -> Character;
-unpackDataFrame R :: unpacks => JSON -> DataFrame;
-unpackDataTable R :: unpacks => JSON -> DataTable;
-unpackList R :: unpacks => JSON -> List;
-unpackLogical R :: unpacks => JSON -> Logical;
-unpackMatrix R :: unpacks => JSON -> Matrix a m n;
-unpackNumeric R :: unpacks => JSON -> Numeric;
-unpackString R :: packs => JSON -> String;
-unpackInt R :: packs => JSON -> Int;
-unpackNum R :: packs => JSON -> Num;
-unpackBool R :: packs => JSON -> Bool;
+packCharacter R :: packs => "character" -> "character";
+unpackCharacter R :: unpacks => "character" -> "character";
+
+packDataFrame R :: packs => "data.frame" -> "character";
+unpackDataFrame R :: unpacks => "character" -> "data.frame";
+
+packDataTable R :: packs => "data.table" -> "character";
+unpackDataTable R :: unpacks => "character" -> "data.table";
+
+packList R :: packs => "list" -> "character";
+unpackList R :: unpacks => "character" -> "list";
+
+packLogical R :: packs => "logical" -> "character";
+unpackLogical R :: unpacks => "character" -> "logical";
+
+packMatrix R :: packs => "matrix" -> "character";
+unpackMatrix R :: unpacks => "character" -> "matrix";
+
+packNumeric R :: packs => "numeric" -> "character";
+unpackNumeric R :: unpacks => "character" -> "numeric";
+
+packString R :: packs => "character" -> "character";
+unpackString R :: packs => "character" -> "character";
+
+packInt R :: packs => "integer" -> "character";
+unpackInt R :: packs => "character" -> "integer";
+
+packNum R :: packs => "numeric" -> "character";
+unpackNum R :: packs => "character" -> "numeric";
+
+packBool R :: packs => "logical" -> "character";
+unpackBool R :: packs => "character" -> "logical";
