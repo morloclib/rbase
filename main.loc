@@ -1,9 +1,9 @@
 source "R" from "core.R" (
-    "map" as map 
-    "map" as zipWith
-    "fold" 
-    "enumerateWith"
-)
+   "map" as map 
+ , "map" as zipWith
+ , "fold" 
+ , "enumerateWith"
+);
 
 map :: (a -> b), [a] -> b;
 zipWith :: (a, b -> c), [a], [b] -> [c];
