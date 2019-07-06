@@ -26,3 +26,8 @@ fold <- function(f, init, xs){
 scan <- function(f, init, xs){
   Reduce(f=f, x=xs, init=init, accumulate=TRUE)
 }
+
+add <- function(x,y) x + y
+sub <- function(x,y) x - y
+mul <- function(x,y) x * y
+div <- function(x,y) x / y

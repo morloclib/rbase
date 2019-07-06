@@ -3,6 +3,10 @@ source "R" from "core.R" (
  , "map" as zipWith
  , "fold" 
  , "enumerateWith"
+ , "add"
+ , "sub"
+ , "mul"
+ , "div"
 );
 
 map :: (a -> b), [a] -> b;
@@ -10,6 +14,10 @@ zipWith :: (a, b -> c), [a], [b] -> [c];
 fold :: (b, a -> b), b, [a] -> b;
 scan :: (b, a -> b), b, [a] -> [b];
 enumerateWith :: (a, Int -> b), [a] -> [b];
+add :: Num, Num -> Num;
+sub :: Num, Num -> Num;
+mul :: Num, Num -> Num;
+div :: Num, Num -> Num;
 
 source "R" from "rbase.R" (
   # unpackers
