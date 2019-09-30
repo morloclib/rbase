@@ -9,18 +9,18 @@ source "R" from "core.R" (
  , "div"
 );
 
-map :: (a -> b), [a] -> b;
-zipWith :: (a, b -> c), [a], [b] -> [c];
-fold :: (b, a -> b), b, [a] -> b;
-scan :: (b, a -> b), b, [a] -> [b];
-enumerateWith :: (a, Int -> b), [a] -> [b];
-add :: Num, Num -> Num;
-sub :: Num, Num -> Num;
-mul :: Num, Num -> Num;
-div :: Num, Num -> Num;
+map :: (a -> b) -> [a] -> b;
+zipWith :: (a -> b -> c) -> [a] -> [b] -> [c];
+fold :: (b -> a -> b) -> b -> [a] -> b;
+scan :: (b -> a -> b) -> b -> [a] -> [b];
+enumerateWith :: (a -> Int -> b) -> [a] -> [b];
+add :: Num -> Num -> Num;
+sub :: Num -> Num -> Num;
+mul :: Num -> Num -> Num;
+div :: Num -> Num -> Num;
 
 source "R" from "rbase.R" (
-  # unpackers
+  -- unpackers
     "unpackCharacter"
   , "unpackDataFrame"
   , "unpackDataTable"
@@ -32,7 +32,7 @@ source "R" from "rbase.R" (
   , "unpackInt"
   , "unpackNum"
   , "unpackBool"
-  # packers
+  -- packers
   , "packCharacter"
   , "packDataFrame"
   , "packDataTable"
@@ -44,7 +44,7 @@ source "R" from "rbase.R" (
   , "packInt"
   , "packNum"
   , "packBool"
-  # generic
+  -- generic
   , "packGeneric"
   , "unpackGeneric"
 )
