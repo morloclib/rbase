@@ -1,3 +1,5 @@
+module rbase {
+
 source "R" from "core.R" (
    "map" as map 
  , "map" as zipWith
@@ -84,3 +86,5 @@ unpackNum R :: packs => "character" -> "numeric";
 
 packBool R :: packs => "logical" -> "character";
 unpackBool R :: packs => "character" -> "logical";
+
+}
