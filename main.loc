@@ -11,15 +11,54 @@ source "R" from "core.R" (
  , "div"
 );
 
-map :: (a -> b) -> [a] -> b;
-zipWith :: (a -> b -> c) -> [a] -> [b] -> [c];
-fold :: (b -> a -> b) -> b -> [a] -> b;
-scan :: (b -> a -> b) -> b -> [a] -> [b];
-enumerateWith :: (a -> Int -> b) -> [a] -> [b];
+export map
+export zipWith
+export fold
+export scan
+export enumerateWith
+export add
+export sub
+export mul
+export div
+
+map :: forall a b . (a -> b) -> [a] -> [b];
+map R :: forall a b . (a -> b) -> [a] -> [b];
+
+zipWith :: forall a b c . (a -> b -> c) -> [a] -> [b] -> [c];
+fold :: forall a b . (b -> a -> b) -> b -> [a] -> b;
+scan :: forall a b . (b -> a -> b) -> b -> [a] -> [b];
+enumerateWith :: forall a b . (a -> Int -> b) -> [a] -> [b];
+
 add :: Num -> Num -> Num;
 sub :: Num -> Num -> Num;
 mul :: Num -> Num -> Num;
 div :: Num -> Num -> Num;
+
+export packBool
+export packCharacter
+export packDataFrame
+export packDataTable
+export packGeneric
+export packInt
+export packList
+export packLogical
+export packMatrix
+export packNum
+export packNumeric
+export packString
+export unpackBool
+export unpackCharacter
+export unpackDataFrame
+export unpackDataTable
+export unpackGeneric
+export unpackInt
+export unpackList
+export unpackLogical
+export unpackMatrix
+export unpackNum
+export unpackNumeric
+export unpackString
+
 
 source "R" from "rbase.R" (
   -- unpackers
@@ -51,8 +90,8 @@ source "R" from "rbase.R" (
   , "unpackGeneric"
 )
 
-packGeneric R :: packs => a -> "character";
-unpackGeneric R :: unpacks => "character" -> a;
+packGeneric R :: packs => forall a . a -> "character";
+unpackGeneric R :: unpacks => forall a . "character" -> a;
 
 packCharacter R :: packs => "character" -> "character";
 unpackCharacter R :: unpacks => "character" -> "character";
