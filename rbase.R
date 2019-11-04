@@ -27,8 +27,9 @@ packBool <- function(x) toJSON(as.logical(x), auto_unbox=TRUE)
 # Serialize R objects into JSON text
 packDataFrame <- function(json){ toJSON(json, dataframe="columns") }
 packDataTable <- packDataFrame
-packCharacter <- toJSON
-packNumeric   <- toJSON
-packLogical   <- toJSON
+packCharacter <- function(x) toJSON(as.character(x), auto_unbox=TRUE)
+packNumeric   <- function(x) toJSON(as.numeric(x), auto_unbox=TRUE)
+packInteger   <- function(x) toJSON(as.integer(x), auto_unbox=TRUE)
+packLogical   <- function(x) toJSON(as.logical(x), auto_unbox=TRUE)
 packList      <- toJSON
 packMatrix    <- toJSON

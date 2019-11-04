@@ -59,6 +59,7 @@ export packLogical
 export packMatrix
 export packNum
 export packNumeric
+export packInteger
 export packString
 export unpackBool
 export unpackCharacter
@@ -71,6 +72,7 @@ export unpackLogical
 export unpackMatrix
 export unpackNum
 export unpackNumeric
+export unpackInteger
 export unpackString
 
 
@@ -83,6 +85,7 @@ source R from "rbase.R" (
   , "unpackLogical"
   , "unpackMatrix"
   , "unpackNumeric"
+  , "unpackInteger"
   , "unpackString"
   , "unpackInt"
   , "unpackNum"
@@ -95,6 +98,7 @@ source R from "rbase.R" (
   , "packLogical"
   , "packMatrix"
   , "packNumeric"
+  , "packInteger"
   , "packString"
   , "packInt"
   , "packNum"
@@ -127,6 +131,9 @@ unpackMatrix R :: unpacks => "character" -> "matrix";
 
 packNumeric R :: packs => "numeric" -> "character";
 unpackNumeric R :: unpacks => "character" -> "numeric";
+
+packInteger R :: packs => "integer" -> "character";
+unpackInteger R :: unpacks => "character" -> "integer";
 
 packString R :: packs => "character" -> "character";
 unpackString R :: packs => "character" -> "character";
