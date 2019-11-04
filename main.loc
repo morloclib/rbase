@@ -9,7 +9,7 @@ source R from "core.R" (
  , "sub"
  , "mul"
  , "div"
-);
+)
 
 export map
 export zipWith
@@ -22,24 +22,31 @@ export mul
 export div
 
 map :: forall a b . (a -> b) -> [a] -> [b];
-map R :: forall a b . (a -> b) -> [a] -> [b];
+map R :: forall a b . (a -> b) -> vector a -> vector b;
 
 zipWith :: forall a b c . (a -> b -> c) -> [a] -> [b] -> [c];
+zipWith R :: forall a b c . (a -> b -> c) -> vector a -> vector b -> vector c;
+
 fold :: forall a b . (b -> a -> b) -> b -> [a] -> b;
+fold R :: forall a b . (b -> a -> b) -> b -> vector a -> b;
+
 scan :: forall a b . (b -> a -> b) -> b -> [a] -> [b];
+scan R :: forall a b . (b -> a -> b) -> b -> vector a -> vector b;
+
 enumerateWith :: forall a b . (a -> Int -> b) -> [a] -> [b];
+enumerateWith R :: forall a b . (a -> Int -> b) -> vector a -> vector b;
 
 add :: Num -> Num -> Num;
-add R :: "numeric" -> "numeric" -> "numeric"
+add R :: "numeric" -> "numeric" -> "numeric";
 
 sub :: Num -> Num -> Num;
-sub R :: "numeric" -> "numeric" -> "numeric"
+sub R :: "numeric" -> "numeric" -> "numeric";
 
 mul :: Num -> Num -> Num;
-mul R :: "numeric" -> "numeric" -> "numeric"
+mul R :: "numeric" -> "numeric" -> "numeric";
 
 div :: Num -> Num -> Num;
-div R :: "numeric" -> "numeric" -> "numeric"
+div R :: "numeric" -> "numeric" -> "numeric";
 
 export packBool
 export packCharacter
