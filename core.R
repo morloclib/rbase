@@ -31,3 +31,9 @@ add <- function(x,y) x + y
 sub <- function(x,y) x - y
 mul <- function(x,y) x * y
 div <- function(x,y) x / y
+
+plotPDF <- function(x, filename){
+  pdf(filename)
+  plot(x)
+  dev.off()
+}
