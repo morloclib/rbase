@@ -1,35 +1,35 @@
 library(jsonlite)
-library(data.table)
 
 # Generic pack/unpack functions
 packGeneric   <- toJSON
 unpackGeneric <- function(s) {fromJSON(as.character(s))}
 
 # Extract R objects from JSON text
-unpackDataFrame <- function(json){ as.data.frame(fromJSON(json)) }
-unpackDataTable <- function(json){ as.data.table(fromJSON(json)) }
-unpackCharacter <- fromJSON
-unpackNumeric   <- fromJSON
-unpackLogical   <- fromJSON
-unpackList <- function(json) {fromJSON(json, simplifyVector = FALSE)}
-unpackMatrix <- fromJSON
 
-unpackString <- fromJSON
-unpackInt <- fromJSON
-unpackNum <- fromJSON
-unpackBool <- fromJSON
+# scalar primitives
+unpackScalarStr <- fromJSON
+unpackScalarLog <- fromJSON
+unpackScalarInt <- fromJSON
+unpackScalarNum <- fromJSON
+packScalarStr <- function(x) toJSON(x, auto_unbox=TRUE)
+packScalarLog <- function(x) toJSON(as.logical(x), auto_unbox=TRUE)
+packScalarInt <- function(x) toJSON(as.integer(x), auto_unbox=TRUE)
+packScalarNum <- function(x) toJSON(as.numeric(x), auto_unbox=TRUE)
 
-packString <- function(x) toJSON(x, auto_unbox=TRUE)
-packInt <- function(x) toJSON(as.integer(x), auto_unbox=TRUE)
-packNum <- function(x) toJSON(as.numeric(x), auto_unbox=TRUE)
-packBool <- function(x) toJSON(as.logical(x), auto_unbox=TRUE)
+# vector primitives
+packVectorStr <- function(x) toJSON(as.character(x), auto_unbox=FALSE)
+packVectorLog <- function(x) toJSON(as.logical(x), auto_unbox=FALSE)
+packVectorInt <- function(x) toJSON(as.integer(x), auto_unbox=FALSE)
+packVectorNum <- function(x) toJSON(as.numeric(x), auto_unbox=FALSE)
+unpackVectorStr <- fromJSON
+unpackVectorLog <- fromJSON
+unpackVectorInt <- fromJSON
+unpackVectorNum <- fromJSON
 
-# Serialize R objects into JSON text
+# containers
 packDataFrame <- function(json){ toJSON(json, dataframe="columns") }
-packDataTable <- packDataFrame
-packCharacter <- function(x) toJSON(as.character(x), auto_unbox=TRUE)
-packNumeric   <- function(x) toJSON(as.numeric(x), auto_unbox=TRUE)
-packInteger   <- function(x) toJSON(as.integer(x), auto_unbox=TRUE)
-packLogical   <- function(x) toJSON(as.logical(x), auto_unbox=TRUE)
 packList      <- toJSON
 packMatrix    <- toJSON
+unpackDataFrame <- function(json){ as.data.frame(fromJSON(json)) }
+unpackList <- function(json) {fromJSON(json, simplifyVector = FALSE)}
+unpackMatrix <- fromJSON
