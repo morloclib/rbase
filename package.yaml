@@ -1,7 +1,7 @@
-name: rcore
+name: rbase
 version: 0.0.0
 homepage: https://github.com/morloc-project/
-synopsis: Core types and functions for R
+synopsis: Base types and functions for R
 description: Lots of detail about all this
 category: language-base
 license: MIT
