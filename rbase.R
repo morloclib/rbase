@@ -4,6 +4,9 @@ library(jsonlite)
 packGeneric   <- toJSON
 unpackGeneric <- function(s) {fromJSON(as.character(s))}
 
+packNull <- function(x) {force(x); "null"}
+unpackNull <- function(x) {force(x); NULL}
+
 # Extract R objects from JSON text
 
 # scalar primitives

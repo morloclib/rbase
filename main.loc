@@ -9,7 +9,7 @@ source R from "core.R" (
  , "sub"
  , "mul"
  , "div"
- , "plot"
+ , "plotPDF"
 )
 
 export map
@@ -79,7 +79,8 @@ export packGeneric
 
 source R from "rbase.R" (
   -- unpackers
-    "unpackVectorStr"
+    "unpackNull"
+  , "unpackVectorStr"
   , "unpackVectorLog"
   , "unpackVectorInt"
   , "unpackVectorNum"
@@ -91,6 +92,8 @@ source R from "rbase.R" (
   , "unpackDataFrame"
   , "unpackMatrix"
   -- packers
+  , "packNull"
+  , "unpackVectorStr"
   , "packVectorStr"
   , "packVectorLog"
   , "packVectorInt"
@@ -110,6 +113,9 @@ source R from "rbase.R" (
 
 packGeneric R :: packs => forall a . a -> "character";
 unpackGeneric R :: unpacks => forall a . "character" -> a;
+
+packNull R :: packs => () -> "character";
+unpackNull R :: unpacks => "character" -> ();
 
 -- scalar packers
 packScalarStr R :: packs => "character" -> "character";
