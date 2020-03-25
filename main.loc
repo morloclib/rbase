@@ -1,9 +1,11 @@
 module rbase {
 
+
+
 source R from "core.R" (
-   "map" as map 
+   "map" as map
  , "map" as zipWith
- , "fold" 
+ , "fold"
  , "enumerateWith"
  , "add"
  , "sub"
@@ -24,19 +26,19 @@ export div
 export plotPDF
 
 map :: forall a b . (a -> b) -> [a] -> [b];
-map R :: forall a b . (a -> b) -> vector a -> vector b;
+map R :: forall a b . (a -> b) -> [a] -> [b];
 
 zipWith :: forall a b c . (a -> b -> c) -> [a] -> [b] -> [c];
-zipWith R :: forall a b c . (a -> b -> c) -> vector a -> vector b -> vector c;
+zipWith R :: forall a b c . (a -> b -> c) -> [a] -> [b] -> [c];
 
 fold :: forall a b . (b -> a -> b) -> b -> [a] -> b;
-fold R :: forall a b . (b -> a -> b) -> b -> vector a -> b;
+fold R :: forall a b . (b -> a -> b) -> b -> [a] -> b;
 
 scan :: forall a b . (b -> a -> b) -> b -> [a] -> [b];
-scan R :: forall a b . (b -> a -> b) -> b -> vector a -> vector b;
+scan R :: forall a b . (b -> a -> b) -> b -> [a] -> [b];
 
 enumerateWith :: forall a b . (a -> Int -> b) -> [a] -> [b];
-enumerateWith R :: forall a b . (a -> Int -> b) -> vector a -> vector b;
+enumerateWith R :: forall a b . (a -> "integer" -> b) -> [a] -> [b];
 
 add :: Num -> Num -> Num;
 add R :: "numeric" -> "numeric" -> "numeric";
@@ -51,31 +53,7 @@ div :: Num -> Num -> Num;
 div R :: "numeric" -> "numeric" -> "numeric";
 
 plotPDF :: forall a . a -> Str -> ();
-plotPDF R :: forall a . a -> character -> ();
-
-export unpackVectorStr
-export unpackVectorLog
-export unpackVectorInt
-export unpackVectorNum
-export unpackScalarStr
-export unpackScalarLog
-export unpackScalarInt
-export unpackScalarNum
-export unpackList
-export unpackDataFrame
-export unpackMatrix
-export packVectorStr
-export packVectorLog
-export packVectorInt
-export packVectorNum
-export packScalarStr
-export packScalarLog
-export packScalarInt
-export packScalarNum
-export packList
-export packDataFrame
-export packMatrix
-export packGeneric
+plotPDF R :: forall a . a -> "character" -> ();
 
 source R from "rbase.R" (
   -- unpackers
@@ -132,17 +110,17 @@ unpackScalarNum R :: unpacks => "character" -> "numeric";
 
 
 -- vector packers
-packVectorStr R :: packs => vector "character" -> "character";
-unpackVectorStr R :: unpacks => "character" -> vector "character";
+packVectorStr R :: packs => ["character"] -> "character";
+unpackVectorStr R :: unpacks => "character" -> ["character"];
 
-packVectorLog R :: packs => vector "logical" -> "character";
-unpackVectorLog R :: unpacks => "character" -> vector "logical";
+packVectorLog R :: packs => ["logical"] -> "character";
+unpackVectorLog R :: unpacks => "character" -> ["logical"];
 
-packVectorNum R :: packs => vector "numeric" -> "character";
-unpackVectorNum R :: unpacks => "character" -> vector "numeric";
+packVectorNum R :: packs => ["numeric"] -> "character";
+unpackVectorNum R :: unpacks => "character" -> ["numeric"];
 
-packVectorInt R :: packs => vector "integer" -> "character";
-unpackVectorInt R :: unpacks => "character" -> vector "integer";
+packVectorInt R :: packs => ["integer"] -> "character";
+unpackVectorInt R :: unpacks => "character" -> ["integer"];
 
 
 -- container packers
@@ -152,7 +130,7 @@ unpackList R :: unpacks => "character" -> "list";
 packDataFrame R :: packs => "data.frame" -> "character";
 unpackDataFrame R :: unpacks => "character" -> "data.frame";
 
-packMatrix R :: packs => forall a . matrix a -> "character";
-unpackMatrix R :: unpacks => forall a . "character" -> matrix a;
+packMatrix R :: packs => forall a . "matrix" a -> "character";
+unpackMatrix R :: unpacks => forall a . "character" -> "matrix" a;
 
 }
