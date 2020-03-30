@@ -66,7 +66,10 @@ source R from "rbase.R" (
   , "unpackScalarLog"
   , "unpackScalarInt"
   , "unpackScalarNum"
-  , "unpackList"
+  , "unpackList2"
+  , "unpackList3"
+  , "unpackList4"
+  , "unpackList5"
   , "unpackDataFrame"
   , "unpackMatrix"
   -- packers
@@ -80,7 +83,10 @@ source R from "rbase.R" (
   , "packScalarLog"
   , "packScalarInt"
   , "packScalarNum"
-  , "packList"
+  , "packList2"
+  , "packList3"
+  , "packList4"
+  , "packList5"
   , "packDataFrame"
   , "packMatrix"
   -- generic
@@ -124,8 +130,17 @@ unpackVectorInt R :: unpacks => "character" -> ["integer"];
 
 
 -- container packers
-packList R :: packs => "list" -> "character";
-unpackList R :: unpacks => "character" -> "list";
+packList2 R :: packs => forall a b . "list" a b -> "character";
+unpackList2 R :: unpacks => forall a b . "character" -> "list" a b;
+
+packList3 R :: packs => forall a b c . "list" a b c -> "character";
+unpackList3 R :: unpacks => forall a b c . "character" -> "list" a b c;
+
+packList4 R :: packs => forall a b c d . "list" a b c d -> "character";
+unpackList4 R :: unpacks => forall a b c d . "character" -> "list" a b c d;
+
+packList5 R :: packs => forall a b c d e . "list" a b c d e -> "character";
+unpackList5 R :: unpacks => forall a b c d e . "character" -> "list" a b c d e;
 
 packDataFrame R :: packs => "data.frame" -> "character";
 unpackDataFrame R :: unpacks => "character" -> "data.frame";

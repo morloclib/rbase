@@ -29,10 +29,19 @@ unpackVectorLog <- fromJSON
 unpackVectorInt <- fromJSON
 unpackVectorNum <- fromJSON
 
+
 # containers
 packDataFrame <- function(json){ toJSON(json, dataframe="columns") }
-packList      <- toJSON
-packMatrix    <- toJSON
+.packList <- function(json){ toJSON(json, auto_unbox=TRUE) }
+packList2 <- .packList
+packList3 <- .packList
+packList4 <- .packList
+packList5 <- .packList
+packMatrix <- toJSON
 unpackDataFrame <- function(json){ as.data.frame(fromJSON(json)) }
-unpackList <- function(json) {fromJSON(json, simplifyVector = FALSE)}
+.unpackList <- function(json) {fromJSON(json, simplifyVector = FALSE)}
+unpackList2 <- .unpackList
+unpackList3 <- .unpackList
+unpackList4 <- .unpackList
+unpackList5 <- .unpackList
 unpackMatrix <- fromJSON
