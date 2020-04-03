@@ -1,6 +1,6 @@
 module rbase {
 
-
+source R from "serialization.R" ("pack", "unpack")
 
 source R from "core.R" (
    "map" as map
@@ -54,98 +54,5 @@ div R :: "numeric" -> "numeric" -> "numeric";
 
 plotPDF :: forall a . a -> Str -> ();
 plotPDF R :: forall a . a -> "character" -> ();
-
-source R from "rbase.R" (
-  -- unpackers
-    "unpackNull"
-  , "unpackVectorStr"
-  , "unpackVectorLog"
-  , "unpackVectorInt"
-  , "unpackVectorNum"
-  , "unpackScalarStr"
-  , "unpackScalarLog"
-  , "unpackScalarInt"
-  , "unpackScalarNum"
-  , "unpackList2"
-  , "unpackList3"
-  , "unpackList4"
-  , "unpackList5"
-  , "unpackDataFrame"
-  , "unpackMatrix"
-  -- packers
-  , "packNull"
-  , "unpackVectorStr"
-  , "packVectorStr"
-  , "packVectorLog"
-  , "packVectorInt"
-  , "packVectorNum"
-  , "packScalarStr"
-  , "packScalarLog"
-  , "packScalarInt"
-  , "packScalarNum"
-  , "packList2"
-  , "packList3"
-  , "packList4"
-  , "packList5"
-  , "packDataFrame"
-  , "packMatrix"
-  -- generic
-  , "packGeneric"
-  , "unpackGeneric"
-)
-
-
-packGeneric R :: packs => forall a . a -> "character";
-unpackGeneric R :: unpacks => forall a . "character" -> a;
-
-packNull R :: packs => () -> "character";
-unpackNull R :: unpacks => "character" -> ();
-
--- scalar packers
-packScalarStr R :: packs => "character" -> "character";
-unpackScalarStr R :: unpacks => "character" -> "character";
-
-packScalarLog R :: packs => "logical" -> "character";
-unpackScalarLog R :: unpacks => "character" -> "logical";
-
-packScalarInt R :: packs => "integer" -> "character";
-unpackScalarInt R :: unpacks => "character" -> "integer";
-
-packScalarNum R :: packs => "numeric" -> "character";
-unpackScalarNum R :: unpacks => "character" -> "numeric";
-
-
--- vector packers
-packVectorStr R :: packs => ["character"] -> "character";
-unpackVectorStr R :: unpacks => "character" -> ["character"];
-
-packVectorLog R :: packs => ["logical"] -> "character";
-unpackVectorLog R :: unpacks => "character" -> ["logical"];
-
-packVectorNum R :: packs => ["numeric"] -> "character";
-unpackVectorNum R :: unpacks => "character" -> ["numeric"];
-
-packVectorInt R :: packs => ["integer"] -> "character";
-unpackVectorInt R :: unpacks => "character" -> ["integer"];
-
-
--- container packers
-packList2 R :: packs => forall a b . "list" a b -> "character";
-unpackList2 R :: unpacks => forall a b . "character" -> "list" a b;
-
-packList3 R :: packs => forall a b c . "list" a b c -> "character";
-unpackList3 R :: unpacks => forall a b c . "character" -> "list" a b c;
-
-packList4 R :: packs => forall a b c d . "list" a b c d -> "character";
-unpackList4 R :: unpacks => forall a b c d . "character" -> "list" a b c d;
-
-packList5 R :: packs => forall a b c d e . "list" a b c d e -> "character";
-unpackList5 R :: unpacks => forall a b c d e . "character" -> "list" a b c d e;
-
-packDataFrame R :: packs => "data.frame" -> "character";
-unpackDataFrame R :: unpacks => "character" -> "data.frame";
-
-packMatrix R :: packs => forall a . "matrix" a -> "character";
-unpackMatrix R :: unpacks => forall a . "character" -> "matrix" a;
 
 }

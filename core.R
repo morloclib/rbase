@@ -1,3 +1,5 @@
+
+
 map <- function(f, xs){
   sapply(xs, f)  
 }
