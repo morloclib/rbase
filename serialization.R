@@ -60,7 +60,8 @@ pack.integer <- function(x, t) { x }
 
 pack.numeric <- function(x, t) { x }
 
-pack.null <- function(x, t){ "null" }
+pack.null <- function(x, t){ force(t); "null" }
+pack.NULL <- function(x, t){ force(t); "null" }
 
 pack.data.frame <- function(x, t){
   toJSON(x, dataframe="columns")
@@ -84,6 +85,7 @@ unpack.tuple     <- function(x, t){ fromJSON(x) }
 unpack.record    <- function(x, t){ fromJSON(x) }
 unpack.list      <- function(x, t){ fromJSON(x) }
 unpack.null      <- function(x, t){ fromJSON(x) }
+unpack.NULL      <- function(x, t){ fromJSON(x) }
 unpack.character <- function(x, t){ fromJSON(x) }
 unpack.logical   <- function(x, t){ fromJSON(x) }
 unpack.integer   <- function(x, t){ fromJSON(x) }
