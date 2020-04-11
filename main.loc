@@ -3,8 +3,8 @@ module rbase {
 source R from "serialization.R" ("pack", "unpack")
 
 source R from "core.R" (
-   "map" as map
- , "map" as zipWith
+   "map"
+ , "zipWith"
  , "fold"
  , "enumerateWith"
  , "add"
