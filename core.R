@@ -39,3 +39,7 @@ plotPDF <- function(x, filename){
   plot(x)
   dev.off()
 }
+
+plotVectorPDF <- function(...){
+  plotPDF(...)
+}

@@ -11,7 +11,7 @@ source R from "core.R" (
  , "sub"
  , "mul"
  , "div"
- , "plotPDF"
+ , "plotVectorPDF"
 )
 
 export map
@@ -23,7 +23,7 @@ export add
 export sub
 export mul
 export div
-export plotPDF
+export plotVectorPDF
 
 map :: forall a b . (a -> b) -> [a] -> [b];
 map R :: forall a b . (a -> b) -> [a] -> [b];
@@ -52,7 +52,7 @@ mul R :: "numeric" -> "numeric" -> "numeric";
 div :: Num -> Num -> Num;
 div R :: "numeric" -> "numeric" -> "numeric";
 
-plotPDF :: forall a . a -> Str -> ();
-plotPDF R :: forall a . a -> "character" -> ();
+plotVectorPDF :: [Num] -> Str -> ();
+plotVectorPDF R :: [numeric] -> "character" -> ();
 
 }
