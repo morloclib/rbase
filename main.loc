@@ -25,20 +25,20 @@ export mul
 export div
 export plotVectorPDF
 
-map :: forall a b . (a -> b) -> [a] -> [b];
-map R :: forall a b . (a -> b) -> [a] -> [b];
+map :: (a -> b) -> [a] -> [b];
+map R :: (a -> b) -> [a] -> [b];
 
-zipWith :: forall a b c . (a -> b -> c) -> [a] -> [b] -> [c];
-zipWith R :: forall a b c . (a -> b -> c) -> [a] -> [b] -> [c];
+zipWith :: (a -> b -> c) -> [a] -> [b] -> [c];
+zipWith R :: (a -> b -> c) -> [a] -> [b] -> [c];
 
-fold :: forall a b . (b -> a -> b) -> b -> [a] -> b;
-fold R :: forall a b . (b -> a -> b) -> b -> [a] -> b;
+fold :: (b -> a -> b) -> b -> [a] -> b;
+fold R :: (b -> a -> b) -> b -> [a] -> b;
 
-scan :: forall a b . (b -> a -> b) -> b -> [a] -> [b];
-scan R :: forall a b . (b -> a -> b) -> b -> [a] -> [b];
+scan :: (b -> a -> b) -> b -> [a] -> [b];
+scan R :: (b -> a -> b) -> b -> [a] -> [b];
 
-enumerateWith :: forall a b . (a -> Int -> b) -> [a] -> [b];
-enumerateWith R :: forall a b . (a -> "integer" -> b) -> [a] -> [b];
+enumerateWith :: (a -> Int -> b) -> [a] -> [b];
+enumerateWith R :: (a -> "integer" -> b) -> [a] -> [b];
 
 add :: Num -> Num -> Num;
 add R :: "numeric" -> "numeric" -> "numeric";
@@ -53,6 +53,6 @@ div :: Num -> Num -> Num;
 div R :: "numeric" -> "numeric" -> "numeric";
 
 plotVectorPDF :: [Num] -> Str -> ();
-plotVectorPDF R :: [numeric] -> "character" -> ();
+plotVectorPDF R :: ["numeric"] -> "character" -> ();
 
 }
