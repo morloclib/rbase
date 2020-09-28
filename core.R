@@ -1,4 +1,6 @@
-
+id <- function(x){
+  x
+}
 
 map <- function(f, xs){
   sapply(xs, f)  

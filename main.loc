@@ -3,7 +3,8 @@ module rbase {
 source R from "serialization.R" ("pack", "unpack")
 
 source R from "core.R" (
-   "map"
+   "id"
+ , "map"
  , "zipWith"
  , "fold"
  , "enumerateWith"
@@ -14,6 +15,7 @@ source R from "core.R" (
  , "plotVectorPDF"
 )
 
+export id
 export map
 export zipWith
 export fold
@@ -24,6 +26,9 @@ export sub
 export mul
 export div
 export plotVectorPDF
+
+id :: a -> a;
+id R :: a -> a;
 
 map :: (a -> b) -> [a] -> [b];
 map R :: (a -> b) -> [a] -> [b];
