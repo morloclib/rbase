@@ -40,3 +40,12 @@
 
 #' An R scalar numeric type
 .mlc_numeric <- list("numeric")
+
+#' An R scalar character type
+.mlc_character <- list("character")
+
+#' An R scalar character type
+.mlc_logical <- list("logical")
+
+#' An R scalar character type
+.mlc_null <- list("NULL")

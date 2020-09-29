@@ -45,10 +45,20 @@ pack.record <- function(x, t){
 }
 
 pack.list <- function(x, t){
-  if(t == "logical"){
-    x <- ifelse(x, "true", "false")
+  if (length(x) == 0){
+    "[]"
+  } else if (t == "character"){
+    jsonlite::toJSON(x)
+  } else if (t == "integer"){
+    jsonlite::toJSON(x)
+  } else if (t == "logical"){
+    jsonlite::fromJSON(x)
+  } else if (t == "numeric"){
+    jsonlite::toJSON(as.character(x), digits=NA)
+  } else {
+    xs = lapply(x, pack, t)
+    paste0("[", paste0(xs, collapse=","), "]")
   }
-  paste0("[", paste0(x, collapse=","), "]")
 }
 
 pack.logical <- function(x, t){
@@ -79,25 +89,65 @@ pack.matrix <- function(x, t){
 }
 
 pack <- function(x, t){
-  if(is.null(names(t))){
+  json <- if(is.null(names(t))){
     eval(parse(text=paste0("pack.", t)))(x, NULL)
   } else {
     eval(parse(text=paste0("pack.", names(t)[1])))(x, t[[1]])
   }
+  as.character(json)
 }
 
 
 
 unpack.tuple <- function(x, t){ jsonlite::fromJSON(x) }
+
 unpack.record <- function(x, t){ jsonlite::fromJSON(x) }
-unpack.list <- function(x, t){ jsonlite::fromJSON(x) }
+
+unpack.list <- function(x, t){
+  isEmpty = grepl("^ *\\[ *\\] *$", x)
+  if (t == "character"){
+    if (isEmpty){
+      character(0)
+    } else {
+      jsonlite::fromJSON(x)
+    }
+  } else if (t == "integer"){
+    if (isEmpty){
+      integer(0)
+    } else {
+      jsonlite::fromJSON(x)
+    }
+  } else if (t == "logical"){
+    if (isEmpty){
+      logical(0)
+    } else {
+      jsonlite::fromJSON(x)
+    }
+  } else if (t == "numeric"){
+    if (isEmpty){
+      numeric(0)
+    } else {
+      jsonlite::fromJSON(x)
+    }
+  } else {
+    return(jsonlite::parse_json(x))  
+  }
+}
+
 unpack.null <- function(x, t){ jsonlite::fromJSON(x) }
+
 unpack.NULL <- function(x, t){ jsonlite::fromJSON(x) }
+
 unpack.character <- function(x, t){ jsonlite::fromJSON(x) }
+
 unpack.logical <- function(x, t){ jsonlite::fromJSON(x) }
+
 unpack.integer <- function(x, t){ jsonlite::fromJSON(x) }
-unpack.numeric <- function(x, t){ jsonlite::fromJSON(x) }
+
+unpack.numeric <- function(x, t){ as.numeric(jsonlite::fromJSON(x)) }
+
 unpack.matrix <- function(x, t){ jsonlite::fromJSON(x) }
+
 unpack.data.frame <- function(x, t){
   as.data.frame(jsonlite::fromJSON(x))
 }
