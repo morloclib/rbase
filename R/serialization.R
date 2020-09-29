@@ -1,5 +1,3 @@
-library(jsonlite)
-
 # Type specification syntax:
 #   tuple
 #   | record
@@ -73,11 +71,11 @@ pack.null <- function(x, t){ force(t); "null" }
 pack.NULL <- function(x, t){ force(t); "null" }
 
 pack.data.frame <- function(x, t){
-  toJSON(x, dataframe="columns")
+  jsonlite::toJSON(x, dataframe="columns")
 }
 
 pack.matrix <- function(x, t){
-  toJSON(x)
+  jsonlite::toJSON(x)
 }
 
 pack <- function(x, t){
@@ -90,18 +88,18 @@ pack <- function(x, t){
 
 
 
-unpack.tuple <- function(x, t){ fromJSON(x) }
-unpack.record <- function(x, t){ fromJSON(x) }
-unpack.list <- function(x, t){ fromJSON(x) }
-unpack.null <- function(x, t){ fromJSON(x) }
-unpack.NULL <- function(x, t){ fromJSON(x) }
-unpack.character <- function(x, t){ fromJSON(x) }
-unpack.logical <- function(x, t){ fromJSON(x) }
-unpack.integer <- function(x, t){ fromJSON(x) }
-unpack.numeric <- function(x, t){ fromJSON(x) }
-unpack.matrix <- function(x, t){ fromJSON(x) }
+unpack.tuple <- function(x, t){ jsonlite::fromJSON(x) }
+unpack.record <- function(x, t){ jsonlite::fromJSON(x) }
+unpack.list <- function(x, t){ jsonlite::fromJSON(x) }
+unpack.null <- function(x, t){ jsonlite::fromJSON(x) }
+unpack.NULL <- function(x, t){ jsonlite::fromJSON(x) }
+unpack.character <- function(x, t){ jsonlite::fromJSON(x) }
+unpack.logical <- function(x, t){ jsonlite::fromJSON(x) }
+unpack.integer <- function(x, t){ jsonlite::fromJSON(x) }
+unpack.numeric <- function(x, t){ jsonlite::fromJSON(x) }
+unpack.matrix <- function(x, t){ jsonlite::fromJSON(x) }
 unpack.data.frame <- function(x, t){
-  as.data.frame(fromJSON(x))
+  as.data.frame(jsonlite::fromJSON(x))
 }
 
 unpack <- function(x, t){

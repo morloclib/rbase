@@ -5,7 +5,7 @@ Version: 0.1.0
 Authors@R: person("Zebulun", "Arendsee", email="zbwrnz@gmail.com", role=c("aut","cre"))
 URL: https://github.com/morloclib/rbase
 BugReports: https://github.com/morloclib/rbase/issues
-Description: Contains the basic functions and serialization boilerplate needed for morloc compatibility
+Description: Contains the basic functions and serialization boilerplate needed for morloc compatibility.
 License: GPL-3
 Depends:
     R (>= 3.4.0)
@@ -14,4 +14,4 @@ Imports:
 Suggests:
     testthat
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 7.1.1
