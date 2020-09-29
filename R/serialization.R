@@ -63,9 +63,9 @@ pack.character <- function(x, t){
   paste0('"', x, '"')
 }
 
-pack.integer <- function(x, t) { x }
+pack.integer <- function(x, t) { as.character(x) }
 
-pack.numeric <- function(x, t) { x }
+pack.numeric <- function(x, t) { as.character(x) }
 
 pack.null <- function(x, t){ force(t); "null" }
 pack.NULL <- function(x, t){ force(t); "null" }
