@@ -1,8 +1,8 @@
 module rbase {
 
-source R from "serialization.R" ("pack", "unpack")
+source R from "R/serialization.R" ("pack", "unpack")
 
-source R from "core.R" (
+source R from "R/core.R" (
    "id"
  , "map"
  , "zipWith"

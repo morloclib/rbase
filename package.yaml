@@ -1,11 +1,14 @@
 name: rbase
-version: 0.0.0
-homepage: https://github.com/morloc-project/
-synopsis: Base types and functions for R
-description: Lots of detail about all this
+version: 0.1.0
+homepage: https://github.com/morloclib/rcore
+synopsis: Morloc prelude and serialization engine for R
+description: Morloc prelude and serialization engine for R. Still evolving in
+  tandem with the C++ and Python3 cousins. See
+  https://github.com/morloc-project/morloc for more info on the morloc language
+  itself.
 category: language-base
 license: MIT
 author: "Zebulun Arendsee"
 maintainer: "zbwrnz@gmail.com"
-github: https://github.com/morloc-project/rcore
-bug-reports: https://github.com/morloc-project/rcore
+github: https://github.com/morloclib/rcore
+bug-reports: https://github.com/morloclib/rcore/issues

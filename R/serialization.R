@@ -1,5 +1,14 @@
 library(jsonlite)
 
+# Type specification syntax:
+#   tuple
+#   | record
+#   | | a
+#   | | | list
+#   | | | | numeric
+#   | | b
+#   | | | logical
+#
 # # (Num, {a::[Num], b::Bool})
 # list(
 #   # tuple constructor
@@ -81,22 +90,23 @@ pack <- function(x, t){
 
 
 
-unpack.tuple     <- function(x, t){ fromJSON(x) }
-unpack.record    <- function(x, t){ fromJSON(x) }
-unpack.list      <- function(x, t){ fromJSON(x) }
-unpack.null      <- function(x, t){ fromJSON(x) }
-unpack.NULL      <- function(x, t){ fromJSON(x) }
+unpack.tuple <- function(x, t){ fromJSON(x) }
+unpack.record <- function(x, t){ fromJSON(x) }
+unpack.list <- function(x, t){ fromJSON(x) }
+unpack.null <- function(x, t){ fromJSON(x) }
+unpack.NULL <- function(x, t){ fromJSON(x) }
 unpack.character <- function(x, t){ fromJSON(x) }
-unpack.logical   <- function(x, t){ fromJSON(x) }
-unpack.integer   <- function(x, t){ fromJSON(x) }
-unpack.numeric   <- function(x, t){ fromJSON(x) }
-unpack.matrix    <- function(x, t){ fromJSON(x) }
+unpack.logical <- function(x, t){ fromJSON(x) }
+unpack.integer <- function(x, t){ fromJSON(x) }
+unpack.numeric <- function(x, t){ fromJSON(x) }
+unpack.matrix <- function(x, t){ fromJSON(x) }
 unpack.data.frame <- function(x, t){
   as.data.frame(fromJSON(x))
 }
 
 unpack <- function(x, t){
   if(is.null(names(t))){
+    # damn this is evil, better way?
     eval(parse(text=paste0("unpack.", t)))(x, NULL)
   } else {
     eval(parse(text=paste0("unpack.", names(t)[1])))(x, t[[1]])
