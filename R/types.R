@@ -12,12 +12,12 @@
 #' @param x The type parameter for a list
 #' @examples
 #' # parse a JSON list into R
-#' unpack("[1,2,3]", mlc_list(mlc_integer))
+#' deserialize("[1,2,3]", mlc_list(mlc_integer))
 #'
 #' # write an R vector to JSON
-#' pack(c(1,2,3), mlc_list(mlc_integer))
+#' serialize(c(1,2,3), mlc_list(mlc_integer))
 .mlc_list <- function(x){
-  list(list=x)
+  paste0("{list:[", x, "]}")
 }
 
 #' Helper function for building tuple types
@@ -27,25 +27,25 @@
 #' @param x The type parameter for a list
 #' @examples
 #' # parse a JSON list into R
-#' unpack("[1,2,3]", mlc_tuple(mlc_integer))
+#' deserialize("[1,2,3]", mlc_tuple(mlc_integer))
 #'
 #' # write an R list to JSON
-#' pack(list(1,2,3), mlc_tuple(mlc_integer))
+#' serialize(list(1,2,3), mlc_tuple(mlc_integer))
 .mlc_tuple <- function(...){
-  list(tuple=list(...))
+  paste0("{tuple:[", paste0(..., collapse=",") ,"]}")
 }
 
 #' An R scalar integer type
-.mlc_integer <- list("integer")
+.mlc_integer <- '"integer"'
 
 #' An R scalar numeric type
-.mlc_numeric <- list("numeric")
+.mlc_numeric <- '"numeric"'
 
 #' An R scalar character type
-.mlc_character <- list("character")
+.mlc_character <- '"character"'
 
 #' An R scalar character type
-.mlc_logical <- list("logical")
+.mlc_logical <- '"logical"'
 
 #' An R scalar character type
-.mlc_null <- list("NULL")
+.mlc_null <- '"null"'

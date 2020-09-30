@@ -5,7 +5,7 @@
 \alias{.mlc_numeric}
 \title{An R scalar numeric type}
 \format{
-An object of class \code{list} of length 1.
+An object of class \code{character} of length 1.
 }
 \usage{
 .mlc_numeric

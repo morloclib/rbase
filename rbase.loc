@@ -1,6 +1,6 @@
 module rbase {
 
-source R from "R/serialization.R" ("pack", "unpack")
+source R from "R/RcppExports.R" ("serialize", "deserialize")
 
 source R from "R/core.R" (
    "id"
