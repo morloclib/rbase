@@ -17,7 +17,7 @@
 #' # write an R vector to JSON
 #' serialize(c(1,2,3), mlc_list(mlc_integer))
 .mlc_list <- function(x){
-  paste0("{list:[", x, "]}")
+  paste0("{\"list\":[", x, "]}")
 }
 
 #' Helper function for building tuple types
@@ -32,7 +32,7 @@
 #' # write an R list to JSON
 #' serialize(list(1,2,3), mlc_tuple(mlc_integer))
 .mlc_tuple <- function(...){
-  paste0("{tuple:[", paste0(..., collapse=",") ,"]}")
+  paste0("{\"tuple\":[", paste0(c(...), collapse=",") ,"]}")
 }
 
 #' An R scalar integer type

@@ -37,8 +37,12 @@ test_that(
       deserialize("[\"1\",\"2\",\"3\"]", .mlc_list(.mlc_character)),
       c("1","2","3")
     )
-    expect_identical(
-      deserialize("[[1,2],[3,4]]", .mlc_list(.mlc_tuple("integer", "integer"))),
+    expect_equal(
+      deserialize("[[1,2],[3,4]]", .mlc_list(.mlc_tuple(.mlc_integer, .mlc_integer))),
+      list(list(1,2), list(3,4))
+    )
+    expect_equal(
+      deserialize("[[1,2],[3,4]]", .mlc_list(.mlc_list(.mlc_integer))),
       list(as.integer(c(1,2)), as.integer(c(3,4)))
     )
   }
@@ -60,7 +64,7 @@ test_that(
       "[\"1\",\"2\",\"3\"]"
     )
     expect_identical(
-      serialize(list(as.integer(c(1,2)), as.integer(c(3,4))), .mlc_list(.mlc_tuple("integer", "integer"))),
+      serialize(list(as.integer(c(1,2)), as.integer(c(3,4))), .mlc_list(.mlc_tuple(.mlc_integer, .mlc_integer))),
       "[[1,2],[3,4]]"
     )
   }
