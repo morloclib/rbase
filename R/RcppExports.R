@@ -5,15 +5,17 @@
 #'
 #' @param x R data of (nearly) any type
 #' @param schema JSON type string
-serialize <- function(x, schema) {
-    .Call('_rbase_serialize', PACKAGE = 'rbase', x, schema)
+#' @export
+mlc_serialize <- function(x, schema) {
+    .Call('_rbase_mlc_serialize', PACKAGE = 'rbase', x, schema)
 }
 
 #' Deserialize JSON data to an R native type using a JSON type string
 #'
 #' @param data JSON data
 #' @param schema JSON type string
-deserialize <- function(data, schema) {
-    .Call('_rbase_deserialize', PACKAGE = 'rbase', data, schema)
+#' @export
+mlc_deserialize <- function(data, schema) {
+    .Call('_rbase_mlc_deserialize', PACKAGE = 'rbase', data, schema)
 }
 

@@ -5,34 +5,34 @@
 
 using namespace Rcpp;
 
-// serialize
-Rcpp::String serialize(SEXP x, std::string schema);
-RcppExport SEXP _rbase_serialize(SEXP xSEXP, SEXP schemaSEXP) {
+// mlc_serialize
+Rcpp::String mlc_serialize(SEXP x, std::string schema);
+RcppExport SEXP _rbase_mlc_serialize(SEXP xSEXP, SEXP schemaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< SEXP >::type x(xSEXP);
     Rcpp::traits::input_parameter< std::string >::type schema(schemaSEXP);
-    rcpp_result_gen = Rcpp::wrap(serialize(x, schema));
+    rcpp_result_gen = Rcpp::wrap(mlc_serialize(x, schema));
     return rcpp_result_gen;
 END_RCPP
 }
-// deserialize
-SEXP deserialize(std::string data, std::string schema);
-RcppExport SEXP _rbase_deserialize(SEXP dataSEXP, SEXP schemaSEXP) {
+// mlc_deserialize
+SEXP mlc_deserialize(std::string data, std::string schema);
+RcppExport SEXP _rbase_mlc_deserialize(SEXP dataSEXP, SEXP schemaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< std::string >::type data(dataSEXP);
     Rcpp::traits::input_parameter< std::string >::type schema(schemaSEXP);
-    rcpp_result_gen = Rcpp::wrap(deserialize(data, schema));
+    rcpp_result_gen = Rcpp::wrap(mlc_deserialize(data, schema));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_rbase_serialize", (DL_FUNC) &_rbase_serialize, 2},
-    {"_rbase_deserialize", (DL_FUNC) &_rbase_deserialize, 2},
+    {"_rbase_mlc_serialize", (DL_FUNC) &_rbase_mlc_serialize, 2},
+    {"_rbase_mlc_deserialize", (DL_FUNC) &_rbase_mlc_deserialize, 2},
     {NULL, NULL, 0}
 };
 

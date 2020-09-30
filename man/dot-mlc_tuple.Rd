@@ -7,15 +7,15 @@
 .mlc_tuple(...)
 }
 \arguments{
-\item{x}{The type parameter for a list}
+\item{...}{elements of the tuple as JSON strings}
 }
 \description{
 A tuple corresponds to an unnamed R list.
 }
 \examples{
 # parse a JSON list into R
-deserialize("[1,2,3]", mlc_tuple(mlc_integer))
+mlc_deserialize("[1,2,3]", .mlc_tuple(.mlc_integer))
 
 # write an R list to JSON
-serialize(list(1,2,3), mlc_tuple(mlc_integer))
+mlc_serialize(list(1,2,3), .mlc_tuple(.mlc_integer))
 }

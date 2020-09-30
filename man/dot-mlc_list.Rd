@@ -17,8 +17,8 @@ vector.
 }
 \examples{
 # parse a JSON list into R
-deserialize("[1,2,3]", mlc_list(mlc_integer))
+mlc_deserialize("[1,2,3]", .mlc_list(.mlc_integer))
 
 # write an R vector to JSON
-serialize(c(1,2,3), mlc_list(mlc_integer))
+mlc_serialize(c(1,2,3), .mlc_list(.mlc_integer))
 }

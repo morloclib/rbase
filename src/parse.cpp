@@ -8,13 +8,13 @@
 
 using json = nlohmann::json;
 
-json serialize(SEXP x, json schema);
-json serialize_list(Rcpp::List data, json schema);
-json serialize_dataframe(Rcpp::DataFrame data, json schema);
-SEXP deserialize(json data, json schema);
+json mlc_serialize(SEXP x, json schema);
+json mlc_serialize_list(Rcpp::List data, json schema);
+json mlc_serialize_dataframe(Rcpp::DataFrame data, json schema);
+SEXP mlc_deserialize(json data, json schema);
 
-SEXP deserialize(std::string data, std::string schema){
-    return(deserialize(json::parse(data), json::parse(schema)));
+SEXP mlc_deserialize(std::string data, std::string schema){
+    return(mlc_deserialize(json::parse(data), json::parse(schema)));
 }
 
 // SEXP types, from https://cran.r-project.org/doc/manuals/r-release/R-ints.html#SEXPs
@@ -44,13 +44,13 @@ SEXP deserialize(std::string data, std::string schema){
 // 25    S4SXP       S4 classes not of simple type
 
 
-Rcpp::String serialize(SEXP x, std::string schema_str){
+Rcpp::String mlc_serialize(SEXP x, std::string schema_str){
     json schema = json::parse(schema_str);
-    json output = serialize(x, schema);
+    json output = mlc_serialize(x, schema);
     return (output.dump());
 }
 
-json serialize(SEXP x, json schema){
+json mlc_serialize(SEXP x, json schema){
     json output;
     bool is_atomic = schema.is_string();
 
@@ -95,7 +95,7 @@ json serialize(SEXP x, json schema){
             }
             break;
         case VECSXP:
-            output = serialize_list(Rcpp::as<Rcpp::List>(x), schema);
+            output = mlc_serialize_list(Rcpp::as<Rcpp::List>(x), schema);
             break;
         default:
             Rcpp::Rcerr << "Serialization failure, could not serialize type: "
@@ -107,17 +107,17 @@ json serialize(SEXP x, json schema){
 }
 
 // serialize(list(1,2), '{"tuple":["integer", "integer"]}')
-json serialize_list(Rcpp::List x, json schema){
+json mlc_serialize_list(Rcpp::List x, json schema){
     json output;
     if (schema.contains("tuple")){
         for(R_xlen_t i = 0; i < x.size(); i++){
-            json el = serialize(x.at(i), schema["tuple"].at(i));
+            json el = mlc_serialize(x.at(i), schema["tuple"].at(i));
             output.push_back(el);
         }
     } else if (schema.contains("list")){
         json list_type = schema["list"].at(0);
         for(Rcpp::List::iterator it = x.begin(); it != x.end(); ++it) {
-            json el = serialize(*it, list_type);
+            json el = mlc_serialize(*it, list_type);
             output.push_back(el);
         }
     } else {
@@ -127,12 +127,12 @@ json serialize_list(Rcpp::List x, json schema){
 }
 
 
-json serialize_dataframe(Rcpp::DataFrame, json schema){
+json mlc_serialize_dataframe(Rcpp::DataFrame, json schema){
     json j("dataFrame");
     return(j);
 }
 
-SEXP deserialize(json data, json schema){
+SEXP mlc_deserialize(json data, json schema){
     // FIXME: This is grossly inefficient. What we SHOULD do is convert the
     // schema into a structure of enums (e.g., [INT, DOUBLE, BOOL, LIST, TUPLE,
     // ...])
@@ -181,7 +181,7 @@ SEXP deserialize(json data, json schema){
             } else {
                 Rcpp::List L = Rcpp::List::create();
                 for (json::iterator it = data.begin(); it != data.end(); ++it) {
-                    SEXP val = deserialize(*it, list_type);
+                    SEXP val = mlc_deserialize(*it, list_type);
                     L.push_back(val);
                 }
                 result = Rcpp::as<SEXP>(L);
@@ -190,7 +190,7 @@ SEXP deserialize(json data, json schema){
             Rcpp::List L = Rcpp::List::create();
             json tuple_types = schema["tuple"];
             for (size_t i = 0; i < tuple_types.size(); i++){
-                SEXP val = deserialize(data.at(i), tuple_types.at(i));
+                SEXP val = mlc_deserialize(data.at(i), tuple_types.at(i));
                 L.push_back(val);
             }
             result = Rcpp::as<SEXP>(L);

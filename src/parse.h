@@ -12,14 +12,16 @@ using json = nlohmann::json;
 //'
 //' @param x R data of (nearly) any type
 //' @param schema JSON type string
+//' @export
 // [[Rcpp::export]]
-Rcpp::String serialize(SEXP x, std::string schema);
+Rcpp::String mlc_serialize(SEXP x, std::string schema);
 
 //' Deserialize JSON data to an R native type using a JSON type string
 //'
 //' @param data JSON data
 //' @param schema JSON type string
+//' @export
 // [[Rcpp::export]]
-SEXP deserialize(std::string data, std::string schema);
+SEXP mlc_deserialize(std::string data, std::string schema);
 
 #endif

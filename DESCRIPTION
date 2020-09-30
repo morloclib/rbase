@@ -8,7 +8,7 @@ BugReports: https://github.com/morloclib/rbase/issues
 Description: Contains the basic functions and serialization boilerplate needed for morloc compatibility.
 License: GPL-3
 Depends:
-    R (>= 3.2.0)
+    R (>= 3.5.0)
 Imports:
     Rcpp (>= 0.12.7)
 SystemRequirements:
