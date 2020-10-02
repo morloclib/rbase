@@ -1,16 +1,16 @@
 module rbase {
 
 source R from "R/core.R" (
-   "id"
- , "map"
- , "zipWith"
- , "fold"
- , "enumerateWith"
- , "add"
- , "sub"
- , "mul"
- , "div"
- , "plotVectorPDF"
+   "mlc_id"            as id
+ , "mlc_map"           as map
+ , "mlc_zipWith"       as zipWith
+ , "mlc_fold"          as fold
+ , "mlc_enumerateWith" as enumerateWith
+ , "mlc_add"           as add
+ , "mlc_sub"           as sub
+ , "mlc_mul"           as mul
+ , "mlc_div"           as div
+ , "mlc_plotVectorPDF" as plotVectorPDF
 )
 
 export id
@@ -24,6 +24,10 @@ export sub
 export mul
 export div
 export plotVectorPDF
+
+type R Int = "integer";
+type R Num = "numeric";
+type R Str = "character";
 
 id :: a -> a;
 id R :: a -> a;
@@ -41,21 +45,21 @@ scan :: (b -> a -> b) -> b -> [a] -> [b];
 scan R :: (b -> a -> b) -> b -> [a] -> [b];
 
 enumerateWith :: (a -> Int -> b) -> [a] -> [b];
-enumerateWith R :: (a -> "integer" -> b) -> [a] -> [b];
+enumerateWith R :: (a -> Int -> b) -> [a] -> [b];
 
 add :: Num -> Num -> Num;
-add R :: "numeric" -> "numeric" -> "numeric";
+add R :: Num -> Num -> Num;
 
 sub :: Num -> Num -> Num;
-sub R :: "numeric" -> "numeric" -> "numeric";
+sub R :: Num -> Num -> Num;
 
 mul :: Num -> Num -> Num;
-mul R :: "numeric" -> "numeric" -> "numeric";
+mul R :: Num -> Num -> Num;
 
 div :: Num -> Num -> Num;
-div R :: "numeric" -> "numeric" -> "numeric";
+div R :: Num -> Num -> Num;
 
 plotVectorPDF :: [Num] -> Str -> ();
-plotVectorPDF R :: ["numeric"] -> "character" -> ();
+plotVectorPDF R :: [Num] -> Str -> ();
 
 }
