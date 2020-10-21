@@ -62,4 +62,31 @@ div R :: Num -> Num -> Num;
 plotVectorPDF :: [Num] -> Str -> ();
 plotVectorPDF R :: [Num] -> Str -> ();
 
+
+-------------------------------------------------------------------------------
+--                 Pack and Unpack internal functions                          
+-- These functions are used by morloc internally for (de)serialization of types
+-- that cannot be automatically (de)serialized into/from JSON. They should not
+-- be exported.
+-------------------------------------------------------------------------------
+
+-- WARNING: The Map implementation in R is total crap. R doesn't have a general
+-- map type, at least not in base. The `list` type works properly only for
+-- string keys. So the Map type here is mostly just for testing purposes.
+source R from "data.R" (
+    "morloc_packMap" as packMap
+  , "morloc_unpackMap" as unpackMap
+)
+
+export Map;
+
+type R (Map key val) = "list" key val;
+
+-- These do not need to be exported (and indeed should not be)
+packMap :: pack => ([key],[val]) -> Map key val;
+packMap R :: pack => ([key],[val]) -> "list" key val;
+
+unpackMap :: unpack => Map key val -> ([key],[val]);
+unpackMap R :: unpack => "list" key val -> ([key],[val]);
+
 }
