@@ -1,5 +1,9 @@
 module rbase {
 
+type R Int = "integer";
+type R Num = "numeric";
+type R Str = "character";
+
 source R from "R/core.R" (
    "mlc_id"            as id
  , "mlc_map"           as map
@@ -25,9 +29,12 @@ export mul
 export div
 export plotVectorPDF
 
-type R Int = "integer";
-type R Num = "numeric";
-type R Str = "character";
+-- exports from base R
+source R ("sum")
+
+export sum
+sum :: [Num] -> Num;
+sum R :: [Num] -> Num;
 
 id :: a -> a;
 id R :: a -> a;
