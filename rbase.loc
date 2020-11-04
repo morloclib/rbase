@@ -30,11 +30,23 @@ export div
 export plotVectorPDF
 
 -- exports from base R
-source R ("sum")
+source R (
+   "sum"
+ , "as.numeric" as ints2reals
+ )
 
 export sum
+export ints2reals
+
 sum :: [Num] -> Num;
 sum R :: [Num] -> Num;
+
+
+-- casting functions - these are all incorrectly typed. Not all values can be
+-- cast into any of these types. Sound resolution of this problem will have to
+-- await the addition of typeclasses.
+ints2reals :: [Int] -> [Num];
+ints2reals R :: ["integer"] -> ["numeric"];
 
 id :: a -> a;
 id R :: a -> a;
