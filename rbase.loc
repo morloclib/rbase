@@ -1,8 +1,8 @@
-module rbase {
+module rbase
 
-type R Int = "integer";
-type R Num = "numeric";
-type R Str = "character";
+type R Int = "integer"
+type R Num = "numeric"
+type R Str = "character"
 
 source R from "R/core.R" (
    "mlc_id"            as id
@@ -38,48 +38,48 @@ source R (
 export sum
 export ints2reals
 
-sum :: [Num] -> Num;
-sum R :: [Num] -> Num;
+sum :: [Num] -> Num
+sum R :: [Num] -> Num
 
 
 -- casting functions - these are all incorrectly typed. Not all values can be
 -- cast into any of these types. Sound resolution of this problem will have to
 -- await the addition of typeclasses.
-ints2reals :: [Int] -> [Num];
-ints2reals R :: ["integer"] -> ["numeric"];
+ints2reals :: [Int] -> [Num]
+ints2reals R :: ["integer"] -> ["numeric"]
 
-id :: a -> a;
-id R :: a -> a;
+id :: a -> a
+id R :: a -> a
 
-map :: (a -> b) -> [a] -> [b];
-map R :: (a -> b) -> [a] -> [b];
+map :: (a -> b) -> [a] -> [b]
+map R :: (a -> b) -> [a] -> [b]
 
-zipWith :: (a -> b -> c) -> [a] -> [b] -> [c];
-zipWith R :: (a -> b -> c) -> [a] -> [b] -> [c];
+zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
+zipWith R :: (a -> b -> c) -> [a] -> [b] -> [c]
 
-fold :: (b -> a -> b) -> b -> [a] -> b;
-fold R :: (b -> a -> b) -> b -> [a] -> b;
+fold :: (b -> a -> b) -> b -> [a] -> b
+fold R :: (b -> a -> b) -> b -> [a] -> b
 
-scan :: (b -> a -> b) -> b -> [a] -> [b];
-scan R :: (b -> a -> b) -> b -> [a] -> [b];
+scan :: (b -> a -> b) -> b -> [a] -> [b]
+scan R :: (b -> a -> b) -> b -> [a] -> [b]
 
-enumerateWith :: (a -> Int -> b) -> [a] -> [b];
-enumerateWith R :: (a -> Int -> b) -> [a] -> [b];
+enumerateWith :: (a -> Int -> b) -> [a] -> [b]
+enumerateWith R :: (a -> Int -> b) -> [a] -> [b]
 
-add :: Num -> Num -> Num;
-add R :: Num -> Num -> Num;
+add :: Num -> Num -> Num
+add R :: Num -> Num -> Num
 
-sub :: Num -> Num -> Num;
-sub R :: Num -> Num -> Num;
+sub :: Num -> Num -> Num
+sub R :: Num -> Num -> Num
 
-mul :: Num -> Num -> Num;
-mul R :: Num -> Num -> Num;
+mul :: Num -> Num -> Num
+mul R :: Num -> Num -> Num
 
-div :: Num -> Num -> Num;
-div R :: Num -> Num -> Num;
+div :: Num -> Num -> Num
+div R :: Num -> Num -> Num
 
-plotVectorPDF :: [Num] -> Str -> ();
-plotVectorPDF R :: [Num] -> Str -> ();
+plotVectorPDF :: [Num] -> Str -> ()
+plotVectorPDF R :: [Num] -> Str -> ()
 
 
 -------------------------------------------------------------------------------
@@ -97,15 +97,13 @@ source R from "data.R" (
   , "morloc_unpackMap" as unpackMap
 )
 
-export Map;
+export Map
 
-type R (Map key val) = "list" key val;
+type R (Map key val) = "list" key val
 
 -- These do not need to be exported (and indeed should not be)
-packMap :: pack => ([key],[val]) -> Map key val;
-packMap R :: pack => ([key],[val]) -> "list" key val;
+packMap :: pack => ([key],[val]) -> Map key val
+packMap R :: pack => ([key],[val]) -> "list" key val
 
-unpackMap :: unpack => Map key val -> ([key],[val]);
-unpackMap R :: unpack => "list" key val -> ([key],[val]);
-
-}
+unpackMap :: unpack => Map key val -> ([key],[val])
+unpackMap R :: unpack => "list" key val -> ([key],[val])
