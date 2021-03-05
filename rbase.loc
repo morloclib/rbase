@@ -4,8 +4,8 @@ type R Int = "integer"
 type R Num = "numeric"
 type R Str = "character"
 
-source R from "R/core.R" (
-   "mlc_id"            as id
+source R from "R/core.R"
+ ( "mlc_id"            as id
  , "mlc_map"           as map
  , "mlc_zipWith"       as zipWith
  , "mlc_fold"          as fold
@@ -15,7 +15,7 @@ source R from "R/core.R" (
  , "mlc_mul"           as mul
  , "mlc_div"           as div
  , "mlc_plotVectorPDF" as plotVectorPDF
-)
+ )
 
 export id
 export map
@@ -30,8 +30,8 @@ export div
 export plotVectorPDF
 
 -- exports from base R
-source R (
-   "sum"
+source R
+ ( "sum"
  , "as.numeric" as ints2reals
  )
 
@@ -92,10 +92,10 @@ plotVectorPDF R :: [Num] -> Str -> ()
 -- WARNING: The Map implementation in R is total crap. R doesn't have a general
 -- map type, at least not in base. The `list` type works properly only for
 -- string keys. So the Map type here is mostly just for testing purposes.
-source R from "data.R" (
-    "morloc_packMap" as packMap
-  , "morloc_unpackMap" as unpackMap
-)
+source R from "data.R"
+ ( "morloc_packMap" as packMap
+ , "morloc_unpackMap" as unpackMap
+ )
 
 export Map
 
