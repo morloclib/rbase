@@ -1,5 +1,7 @@
 module rbase
 
+import conventions
+
 type R Int = "integer"
 type R Num = "numeric"
 type R Str = "character"
@@ -38,7 +40,6 @@ source R
 export sum
 export ints2reals
 
-sum :: [Num] -> Num
 sum R :: [Num] -> Num
 
 
@@ -48,34 +49,24 @@ sum R :: [Num] -> Num
 ints2reals :: [Int] -> [Num]
 ints2reals R :: ["integer"] -> ["numeric"]
 
-id :: a -> a
 id R :: a -> a
 
-map :: (a -> b) -> [a] -> [b]
 map R :: (a -> b) -> [a] -> [b]
 
-zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
 zipWith R :: (a -> b -> c) -> [a] -> [b] -> [c]
 
-fold :: (b -> a -> b) -> b -> [a] -> b
 fold R :: (b -> a -> b) -> b -> [a] -> b
 
-scan :: (b -> a -> b) -> b -> [a] -> [b]
 scan R :: (b -> a -> b) -> b -> [a] -> [b]
 
-enumerateWith :: (a -> Int -> b) -> [a] -> [b]
 enumerateWith R :: (a -> Int -> b) -> [a] -> [b]
 
-add :: Num -> Num -> Num
 add R :: Num -> Num -> Num
 
-sub :: Num -> Num -> Num
 sub R :: Num -> Num -> Num
 
-mul :: Num -> Num -> Num
 mul R :: Num -> Num -> Num
 
-div :: Num -> Num -> Num
 div R :: Num -> Num -> Num
 
 plotVectorPDF :: [Num] -> Str -> ()
