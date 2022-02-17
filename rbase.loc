@@ -3,7 +3,7 @@ module rbase
 import conventions
 
 type R Int = "integer"
-type R Num = "numeric"
+type R Real = "numeric"
 type R Str = "character"
 
 source R from "R/core.R"
@@ -40,13 +40,13 @@ source R
 export sum
 export ints2reals
 
-sum R :: [Num] -> Num
+sum R :: [Real] -> Real
 
 
 -- casting functions - these are all incorrectly typed. Not all values can be
 -- cast into any of these types. Sound resolution of this problem will have to
 -- await the addition of typeclasses.
-ints2reals :: [Int] -> [Num]
+ints2reals :: [Int] -> [Real]
 ints2reals R :: ["integer"] -> ["numeric"]
 
 id R :: a -> a
@@ -61,16 +61,16 @@ scan R :: (b -> a -> b) -> b -> [a] -> [b]
 
 enumerateWith R :: (a -> Int -> b) -> [a] -> [b]
 
-add R :: Num -> Num -> Num
+add R :: Real -> Real -> Real
 
-sub R :: Num -> Num -> Num
+sub R :: Real -> Real -> Real
 
-mul R :: Num -> Num -> Num
+mul R :: Real -> Real -> Real
 
-div R :: Num -> Num -> Num
+div R :: Real -> Real -> Real
 
-plotVectorPDF :: [Num] -> Str -> ()
-plotVectorPDF R :: [Num] -> Str -> ()
+plotVectorPDF :: [Real] -> Str -> ()
+plotVectorPDF R :: [Real] -> Str -> ()
 
 
 -------------------------------------------------------------------------------
