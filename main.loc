@@ -2,9 +2,16 @@ module rbase
 
 import conventions
 
+
+export Int
+export Real
+export Str
+export Bool
+
 type R Int = "integer"
 type R Real = "numeric"
 type R Str = "character"
+type R Bool = "logical"
 
 source R from "R/core.R"
  ( "mlc_id"            as id
