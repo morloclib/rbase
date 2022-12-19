@@ -30,7 +30,6 @@ export id
 export map
 export zipWith
 export fold
-export scan
 export enumerateWith
 export add
 export sub
@@ -63,8 +62,6 @@ map R :: (a -> b) -> [a] -> [b]
 zipWith R :: (a -> b -> c) -> [a] -> [b] -> [c]
 
 fold R :: (b -> a -> b) -> b -> [a] -> b
-
-scan R :: (b -> a -> b) -> b -> [a] -> [b]
 
 enumerateWith R :: (a -> Int -> b) -> [a] -> [b]
 
