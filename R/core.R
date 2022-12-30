@@ -2,6 +2,14 @@ mlc_id <- function(x){
   x
 }
 
+mlc_at <- function(i, xs){
+  if (is.list(xs)){
+    xs[[i]]
+  } else {
+    xs[i]
+  }
+}
+
 mlc_map <- function(f, xs){
   sapply(xs, f)  
 }

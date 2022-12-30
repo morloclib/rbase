@@ -15,6 +15,7 @@ type R Bool = "logical"
 
 source R from "R/core.R"
  ( "mlc_id"            as id
+ , "mlc_at"            as at
  , "mlc_map"           as map
  , "mlc_zipWith"       as zipWith
  , "mlc_fold"          as fold
@@ -27,6 +28,7 @@ source R from "R/core.R"
  )
 
 export id
+export at
 export map
 export zipWith
 export fold
@@ -46,8 +48,8 @@ source R
 export sum
 export ints2reals
 
+sum :: [Real] -> Real
 sum R :: [Real] -> Real
-
 
 -- casting functions - these are all incorrectly typed. Not all values can be
 -- cast into any of these types. Sound resolution of this problem will have to
