@@ -24,6 +24,7 @@ source R from "R/core.R"
  , "mlc_sub"           as sub
  , "mlc_mul"           as mul
  , "mlc_div"           as div
+ , "mlc_neg"           as neg
  , "mlc_plotVectorPDF" as plotVectorPDF
  )
 
@@ -37,6 +38,7 @@ export add
 export sub
 export mul
 export div
+export neg
 export plotVectorPDF
 
 -- exports from base R
@@ -74,6 +76,8 @@ sub R :: Real -> Real -> Real
 mul R :: Real -> Real -> Real
 
 div R :: Real -> Real -> Real
+
+neg R :: Real -> Real
 
 plotVectorPDF :: [Real] -> Str -> ()
 plotVectorPDF R :: [Real] -> Str -> ()

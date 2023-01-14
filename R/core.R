@@ -43,6 +43,7 @@ mlc_add <- function(x,y) x + y
 mlc_sub <- function(x,y) x - y
 mlc_mul <- function(x,y) x * y
 mlc_div <- function(x,y) x / y
+mlc_neg <- function(x) (-1) * x
 
 plotPDF <- function(x, filename){
   pdf(filename)
