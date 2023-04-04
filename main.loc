@@ -1,12 +1,7 @@
-module rbase
+module rbase (*)
 
 import conventions
 
-
-export Int
-export Real
-export Str
-export Bool
 
 type R Int = "integer"
 type R Real = "numeric"
@@ -28,18 +23,10 @@ source R from "R/core.R"
  , "mlc_plotVectorPDF" as plotVectorPDF
  )
 
-export id
-export at
-export map
-export zipWith
-export fold
-export enumerateWith
-export add
-export sub
-export mul
-export div
-export neg
-export plotVectorPDF
+source R
+ ( "length" as length
+ , "nchar" as lengthS
+ )
 
 -- exports from base R
 source R
@@ -47,8 +34,9 @@ source R
  , "as.numeric" as ints2reals
  )
 
-export sum
-export ints2reals
+at R :: [a] -> Int -> a
+length R :: [a] -> Int
+lengthS R :: Str -> Int
 
 sum :: [Real] -> Real
 sum R :: [Real] -> Real
@@ -97,8 +85,6 @@ source R from "data.R"
  ( "morloc_packMap" as packMap
  , "morloc_unpackMap" as unpackMap
  )
-
-export Map
 
 type R (Map key val) = "list" key val
 
