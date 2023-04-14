@@ -1,15 +1,20 @@
 module rbase (*)
 
-import conventions
-
-
 type R Int = "integer"
 type R Real = "numeric"
 type R Str = "character"
 type R Bool = "logical"
+type R (List a) = "list" a
+type R (Tuple2 a b) = "tuple" a b
+type R (Tuple3 a b c) = "tuple" a b c
+type R (Tuple4 a b c d) = "tuple" a b c d
+type R (Tuple5 a b c d e) = "tuple" a b c d e
 
+-- Import and source conventions
+import conventions
 source R from "R/core.R"
- ( "mlc_id"            as id
+ ( "mlc_run"           as run
+ , "mlc_id"            as id
  , "mlc_at"            as at
  , "mlc_map"           as map
  , "mlc_zipWith"       as zipWith
@@ -20,7 +25,6 @@ source R from "R/core.R"
  , "mlc_mul"           as mul
  , "mlc_div"           as div
  , "mlc_neg"           as neg
- , "mlc_plotVectorPDF" as plotVectorPDF
  )
 
 source R
@@ -28,47 +32,26 @@ source R
  , "nchar" as lengthS
  )
 
+
+-------------------------------------------------------------------------------
 -- exports from base R
 source R
  ( "sum"
  , "as.numeric" as ints2reals
  )
 
-at R :: [a] -> Int -> a
-length R :: [a] -> Int
-lengthS R :: Str -> Int
-
 sum :: [Real] -> Real
-sum R :: [Real] -> Real
 
 -- casting functions - these are all incorrectly typed. Not all values can be
 -- cast into any of these types. Sound resolution of this problem will have to
 -- await the addition of typeclasses.
 ints2reals :: [Int] -> [Real]
-ints2reals R :: ["integer"] -> ["numeric"]
 
-id R :: a -> a
-
-map R :: (a -> b) -> [a] -> [b]
-
-zipWith R :: (a -> b -> c) -> [a] -> [b] -> [c]
-
-fold R :: (b -> a -> b) -> b -> [a] -> b
-
-enumerateWith R :: (a -> Int -> b) -> [a] -> [b]
-
-add R :: Real -> Real -> Real
-
-sub R :: Real -> Real -> Real
-
-mul R :: Real -> Real -> Real
-
-div R :: Real -> Real -> Real
-
-neg R :: Real -> Real
-
+source R from "R/core.R" ("mlc_plotVectorPDF" as plotVectorPDF)
 plotVectorPDF :: [Real] -> Str -> ()
 plotVectorPDF R :: [Real] -> Str -> ()
+-------------------------------------------------------------------------------
+
 
 
 -------------------------------------------------------------------------------

@@ -1,3 +1,7 @@
+mlc_run <- function(f){
+    f()
+}
+
 mlc_id <- function(x){
   x
 }
