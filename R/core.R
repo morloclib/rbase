@@ -1,3 +1,7 @@
+mlc_fst <- function(x) x[[1]]
+mlc_snd <- function(x) x[[2]]
+mlc_thr <- function(x) x[[3]]
+
 mlc_run <- function(f){
     f()
 }

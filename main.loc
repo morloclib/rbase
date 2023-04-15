@@ -25,6 +25,12 @@ source R from "R/core.R"
  , "mlc_mul"           as mul
  , "mlc_div"           as div
  , "mlc_neg"           as neg
+ -- tuples
+ , "mlc_fst" as fst
+ , "mlc_snd" as snd
+ , "mlc_fst" as fst3 -- same as fst in R
+ , "mlc_snd" as snd3 -- same as snd in R
+ , "mlc_thr" as thr3 -- same as thr in R
  )
 
 source R
