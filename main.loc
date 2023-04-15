@@ -31,6 +31,16 @@ source R from "R/core.R"
  , "mlc_fst" as fst3 -- same as fst in R
  , "mlc_snd" as snd3 -- same as snd in R
  , "mlc_thr" as thr3 -- same as thr in R
+ -- comparators
+ , "mlc_gt" as gt
+ , "mlc_lt" as lt
+ , "mlc_ge" as ge
+ , "mlc_le" as le
+ , "mlc_eq" as eq
+ , "mlc_ne" as ne
+ , "mlc_not" as not
+ , "mlc_and" as and
+ , "mlc_or" as or
  )
 
 source R

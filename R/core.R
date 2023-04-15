@@ -63,3 +63,41 @@ plotPDF <- function(x, filename){
 mlc_plotVectorPDF <- function(...){
   plotPDF(...)
 }
+
+
+
+mlc_gt <- function(x, y){
+	x > y
+}
+
+mlc_lt <- function(x, y){
+	x < y
+}
+
+mlc_ge <- function(x, y){
+	x >= y
+}
+
+mlc_le <- function(x, y){
+	x <= y
+}
+
+mlc_eq <- function(x, y){
+	x == y
+}
+
+mlc_ne <- function(x, y){
+	x != y
+}
+
+mlc_not <- function(x){
+	!x
+}
+
+mlc_and <- function(x, y){
+	x && y
+}
+
+mlc_or <- function(x, y){
+	x || y
+}
