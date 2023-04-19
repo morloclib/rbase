@@ -4,6 +4,7 @@ type R Int = "integer"
 type R Real = "numeric"
 type R Str = "character"
 type R Bool = "logical"
+type R Unit = "NULL"
 type R (List a) = "list" a
 type R (Tuple2 a b) = "tuple" a b
 type R (Tuple3 a b c) = "tuple" a b c
