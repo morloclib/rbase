@@ -1,26 +1,18 @@
 module rbase (*)
 
-type R Int = "integer"
-type R Real = "numeric"
-type R Str = "character"
-type R Bool = "logical"
-type R Unit = "NULL"
-type R (List a) = "list" a
-type R (Tuple2 a b) = "tuple" a b
-type R (Tuple3 a b c) = "tuple" a b c
-type R (Tuple4 a b c d) = "tuple" a b c d
-type R (Tuple5 a b c d e) = "tuple" a b c d e
-
--- Import and source conventions
 import conventions
+
 source R from "R/core.R"
  ( "mlc_run"           as run
  , "mlc_id"            as id
+ , "mlc_seq"           as seq
+ , "mlc_const"         as const
  , "mlc_at"            as at
  , "mlc_map"           as map
  , "mlc_zipWith"       as zipWith
  , "mlc_fold"          as fold
  , "mlc_enumerateWith" as enumerateWith
+ , "mlc_elem"          as elem
  , "mlc_add"           as add
  , "mlc_sub"           as sub
  , "mlc_mul"           as mul

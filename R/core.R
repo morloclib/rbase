@@ -2,11 +2,23 @@ mlc_fst <- function(x) x[[1]]
 mlc_snd <- function(x) x[[2]]
 mlc_thr <- function(x) x[[3]]
 
+mlc_elem <- function(x, xs){
+    x %in% xs
+}
+
 mlc_run <- function(f){
     f()
 }
 
 mlc_id <- function(x){
+  x
+}
+
+mlc_seq <- function(x, y){
+  y
+}
+
+mlc_const <- function(x, y){
   x
 }
 
