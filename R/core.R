@@ -59,6 +59,10 @@ mlc_scan <- function(f, init, xs){
   Reduce(f=f, x=xs, init=init, accumulate=TRUE)
 }
 
+mlc_join <- function(xs, ys){
+  c(xs, ys)
+}
+
 mlc_add <- function(x,y) x + y
 mlc_sub <- function(x,y) x - y
 mlc_mul <- function(x,y) x * y

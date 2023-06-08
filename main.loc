@@ -12,6 +12,7 @@ source R from "R/core.R"
  , "mlc_zipWith"       as zipWith
  , "mlc_fold"          as fold
  , "mlc_enumerateWith" as enumerateWith
+ , "mlc_join"          as join
  , "mlc_elem"          as elem
  , "mlc_add"           as add
  , "mlc_sub"           as sub
