@@ -9,6 +9,13 @@ source R from "R/core.R"
  , "mlc_const"         as const
  , "mlc_at"            as at
  , "mlc_map"           as map
+ , "mlc_head"          as head -- [a] -> a
+ , "mlc_tail"          as tail -- [a]_{n} -> [a]_{n-1}
+ , "mlc_init"          as init -- [a]_{n>i} -> [a]_{n-i}
+ , "mlc_last"          as last -- [a] -> a
+ , "mlc_take"          as take -- i:Int -> [a]_{n>i} -> [a]_{n=i}
+ , "mlc_drop"          as drop -- i:Int -> [a]_{n>i} -> [a]_{n-i}
+ , "mlc_join"          as join
  , "mlc_zipWith"       as zipWith
  , "mlc_fold"          as fold
  , "mlc_enumerateWith" as enumerateWith

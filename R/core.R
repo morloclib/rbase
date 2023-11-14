@@ -34,6 +34,56 @@ mlc_map <- function(f, xs){
   sapply(xs, f)  
 }
 
+# [a] -> a
+mlc_head <- function(xs) {
+  if(length(xs) == 0){
+    stop("Empty list in head operation")
+  }
+  return(xs[[1]])
+}
+
+# [a]_{n} -> [a_{n-1}
+mlc_tail <- function(xs) {
+  if(length(xs) == 0){
+    stop("Empty list in tail operation")
+  }
+  return(xs[-1])
+}
+
+# [a] -> a
+mlc_last <- function(xs) {
+  if(length(xs) == 0){
+    stop("Empty list in last operation")
+  }
+  return(tail(xs, n = 1)[[1]])
+}
+
+# i:Int -> [a]_{n>i} -> [a]_{n=i}
+mlc_take <- function(i, xs) {
+  if(i < 1){
+    # this operation returns an empty sequence while preserving the type
+    return tail(xs, n=0)
+  }
+  return(xs[1:i])
+}
+
+# i:Int -> [a]_{n; n>i} -> [a]_{m; m <= n-i}
+mlc_drop <- function(i, xs) {
+  if(i < 1){
+    # this operation returns an empty sequence while preserving the type
+    return xs
+  }
+  return(xs[-(1:i)])
+}
+
+#  [a]_{n>i} -> [a]_{n-i}
+mlc_init <- function(xs) {
+  if(length(xs) == 0){
+    stop("Empty list in init operation")
+  }
+  return(xs[-length(xs)])
+}
+
 mlc_zipWith <- function(f, xs, ys){
   N <- min(length(xs), length(ys))
   zs <- as.list(rep(NA, N))
