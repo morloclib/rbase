@@ -62,7 +62,7 @@ mlc_last <- function(xs) {
 mlc_take <- function(i, xs) {
   if(i < 1){
     # this operation returns an empty sequence while preserving the type
-    return tail(xs, n=0)
+    return(tail(xs, n=0))
   }
   return(xs[1:i])
 }
@@ -71,7 +71,7 @@ mlc_take <- function(i, xs) {
 mlc_drop <- function(i, xs) {
   if(i < 1){
     # this operation returns an empty sequence while preserving the type
-    return xs
+    return(xs)
   }
   return(xs[-(1:i)])
 }

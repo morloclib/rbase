@@ -66,7 +66,6 @@ ints2reals :: [Int] -> [Real]
 
 source R from "R/core.R" ("mlc_plotVectorPDF" as plotVectorPDF)
 plotVectorPDF :: [Real] -> Str -> ()
-plotVectorPDF R :: [Real] -> Str -> ()
 -------------------------------------------------------------------------------
 
 
@@ -86,11 +85,8 @@ source R from "data.R"
  , "morloc_unpackMap" as unpackMap
  )
 
-type R (Map key val) = "list" key val
+type R => (Map key val) = "list" key val
 
 -- These do not need to be exported (and indeed should not be)
 packMap :: pack => ([key],[val]) -> Map key val
-packMap R :: pack => ([key],[val]) -> "list" key val
-
 unpackMap :: unpack => Map key val -> ([key],[val])
-unpackMap R :: unpack => "list" key val -> ([key],[val])
