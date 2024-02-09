@@ -80,13 +80,10 @@ plotVectorPDF :: [Real] -> Str -> ()
 -- WARNING: The Map implementation in R is total crap. R doesn't have a general
 -- map type, at least not in base. The `list` type works properly only for
 -- string keys. So the Map type here is mostly just for testing purposes.
-source R from "data.R"
- ( "morloc_packMap" as packMap
- , "morloc_unpackMap" as unpackMap
- )
-
 type R => (Map key val) = "list" key val
 
--- These do not need to be exported (and indeed should not be)
-packMap :: pack => ([key],[val]) -> Map key val
-unpackMap :: unpack => Map key val -> ([key],[val])
+instance Packable ([Str],[val]) (Map Str val) where
+  source R from "data.R"
+   ( "morloc_packMap" as pack
+   , "morloc_unpackMap" as unpack
+   )
