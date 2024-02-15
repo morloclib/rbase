@@ -21,11 +21,6 @@ source R from "R/core.R"
  , "mlc_enumerateWith" as enumerateWith
  , "mlc_join"          as join
  , "mlc_elem"          as elem
- , "mlc_add"           as add
- , "mlc_sub"           as sub
- , "mlc_mul"           as mul
- , "mlc_div"           as div
- , "mlc_neg"           as neg
  -- tuples
  , "mlc_fst" as fst
  , "mlc_snd" as snd
@@ -33,20 +28,9 @@ source R from "R/core.R"
  , "mlc_snd" as snd3 -- same as snd in R
  , "mlc_thr" as thr3 -- same as thr in R
  -- comparators
- , "mlc_gt" as gt
- , "mlc_lt" as lt
- , "mlc_ge" as ge
- , "mlc_le" as le
- , "mlc_eq" as eq
- , "mlc_ne" as ne
  , "mlc_not" as not
  , "mlc_and" as and
  , "mlc_or" as or
- )
-
-source R
- ( "length" as length
- , "nchar" as lengthS
  )
 
 
@@ -67,6 +51,102 @@ ints2reals :: [Int] -> [Real]
 source R from "R/core.R" ("mlc_plotVectorPDF" as plotVectorPDF)
 plotVectorPDF :: [Real] -> Str -> ()
 -------------------------------------------------------------------------------
+
+
+instance Show Int where
+  source R from "R/core.R" ("mlc_show" as show)
+
+instance Show Real where
+  source R from "R/core.R" ("mlc_show" as show)
+
+instance Show Str where
+  show x = x
+
+
+instance Sized [a] where
+  source R ("length" as size)
+
+instance Sized Str where
+  source R ("nchar" as size)
+
+
+instance Ord Int where
+  source R from "R/core.R"
+    ( "mlc_le" as le
+    , "mlc_lt" as lt
+    , "mlc_ge" as ge
+    , "mlc_gt" as gt
+    )
+
+instance Ord Real where
+  source R from "R/core.R"
+    ( "mlc_le" as le
+    , "mlc_lt" as lt
+    , "mlc_ge" as ge
+    , "mlc_gt" as gt
+    )
+
+instance Ord Int where
+  source R from "R/core.R"
+    ( "mlc_le" as le
+    , "mlc_lt" as lt
+    , "mlc_ge" as ge
+    , "mlc_gt" as gt
+    )
+
+
+instance Eq Real where
+  source R from "R/core.R"
+    ( "mlc_eq" as eq
+    , "mlc_ne" as ne
+    )
+
+instance Eq Int where
+  source R from "R/core.R"
+    ( "mlc_eq" as eq
+    , "mlc_ne" as ne
+    )
+
+instance Eq Str where
+  source R from "R/core.R"
+    ( "mlc_eq" as eq
+    , "mlc_ne" as ne
+    )
+
+
+instance Addable Int where
+  source R from "R/core.R"
+   ( "mlc_add" as add
+   , "mlc_mul" as mul
+   , "mlc_mod" as mod
+   , "mlc_div" as div
+   )
+  zero = 0
+  one = 1
+
+instance Subtractable Int where
+  source R from "R/core.R"
+   ( "mlc_neg" as neg
+   , "mlc_sub" as sub
+   )
+
+
+instance Addable Real where
+  source R from "R/core.R"
+   ( "mlc_add" as add
+   , "mlc_mul" as mul
+   , "mlc_mod" as mod
+   , "mlc_div" as div
+   )
+  zero = 0.0
+  one = 1.0
+
+
+instance Subtractable Real where
+  source R from "R/core.R"
+   ( "mlc_neg" as neg
+   , "mlc_sub" as sub
+   )
 
 
 
