@@ -167,3 +167,9 @@ instance Packable ([Str],[val]) (Map Str val) where
    ( "morloc_packMap" as pack
    , "morloc_unpackMap" as unpack
    )
+
+instance Packable (Int) Unit where
+  source Cpp from "data.R"
+   ( "morloc_packUnit" as pack
+   , "morloc_unpackUnit" as unpack
+   )
