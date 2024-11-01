@@ -1,13 +1,16 @@
+# create a list from a pair of key/value lists
 morloc_packMap <- function(d) {
-  xs <- d[[1]]
-  ys <- d[[2]]
-  lapply(seq_along(d[[1]]), function(i) list(xs[[i]], ys[[i]]))
+  keys <- unlist(d[[1]])
+  vals <- as.list(d[[2]])
+  names(vals) <- keys
+  vals
 }
 
+# create a pair of key/value lists from a named list
 morloc_unpackMap <- function(xs){
-  ys <- lapply(xs, function(x) x[[1]])  
-  zs <- lapply(xs, function(x) x[[2]])  
-  list(ys,zs)
+  keys <- names(xs)
+  vals <- unlist(xs)
+  list(keys,vals)
 }
 
 
