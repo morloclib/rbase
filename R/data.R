@@ -8,3 +8,11 @@ mlc_pack_map <- function(xs){
   names(xs[[2]]) <- xs[[1]]  
   as.list(xs[[2]])
 }
+
+morloc_packUnit <- function(x) {
+  NULL
+}
+
+morloc_unpackUnit <- function(x){
+  1
+}

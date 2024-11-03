@@ -163,13 +163,13 @@ instance Subtractable Real where
 type R => (Map key val) = "list" key val
 
 instance Packable ([Str],[val]) (Map Str val) where
-  source R from "data.R"
-   ( "morloc_packMap" as pack
-   , "morloc_unpackMap" as unpack
+  source R from "R/data.R"
+   ( "mlc_pack_map" as pack
+   , "mlc_unpack_map" as unpack
    )
 
 instance Packable (Int) Unit where
-  source Cpp from "data.R"
+  source R from "R/data.R"
    ( "morloc_packUnit" as pack
    , "morloc_unpackUnit" as unpack
    )
